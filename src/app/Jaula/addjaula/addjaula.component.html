@@ -1,0 +1,67 @@
+<div class="container">
+    <button (click)="ListarJaula()" class="btn btn-info"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-list-ol" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5z"/>
+        <path d="M1.713 11.865v-.474H2c.217 0 .363-.137.363-.317 0-.185-.158-.31-.361-.31-.223 0-.367.152-.373.31h-.59c.016-.467.373-.787.986-.787.588-.002.954.291.957.703a.595.595 0 0 1-.492.594v.033a.615.615 0 0 1 .569.631c.003.533-.502.8-1.051.8-.656 0-1-.37-1.008-.794h.582c.008.178.186.306.422.309.254 0 .424-.145.422-.35-.002-.195-.155-.348-.414-.348h-.3zm-.004-4.699h-.604v-.035c0-.408.295-.844.958-.844.583 0 .96.326.96.756 0 .389-.257.617-.476.848l-.537.572v.03h1.054V9H1.143v-.395l.957-.99c.138-.142.293-.304.293-.508 0-.18-.147-.32-.342-.32a.33.33 0 0 0-.342.338v.041zM2.564 5h-.635V2.924h-.031l-.598.42v-.567l.629-.443h.635V5z"/>
+      </svg></button>
+    <button (click)="NuevoJaula()" class="btn btn-info" style="margin-left:10px"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-plus-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5H4a.5.5 0 0 1 0-1h3.5V4a.5.5 0 0 1 .5-.5z"/>
+        <path fill-rule="evenodd" d="M7.5 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0V8z"/>
+        <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+      </svg></button>
+    <br>
+    <br>
+<div class="container col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3>Jaula Activa</h3>
+        </div>
+        <div class="card-body table-responsive">
+            <div class="form-group">
+                <label for="">ID:.</label>
+                <input #ID="ngModel" required type="number" min="0" [(ngModel)]="Jaula._id"  (keyup)="idmascpress(Jaula._id)" name="" id="" class="form-control" >
+                <div *ngIf="ID.touched && !ID.valid">
+                    <div class="isrequired" *ngIf="ID.errors.required">Es requerido</div>
+                </div>
+            </div>
+             <div class="form-group">
+                 <label for="">No°</label>
+                 <input (keyup)="jaudispo(Jaula.numerojaula)" [(ngModel)]="Jaula.numerojaula" #num="ngModel" required type="number" min="0" name="" id="" class="form-control">
+                 <div *ngIf="num.touched && !num.valid">
+                    <div class="isrequired" *ngIf="num.errors.required">Es requerido</div>  
+                </div>             
+             </div>
+             <div class="form-group">
+                <label for="">Activa:</label>
+                <input type="text" name="" id="" class="form-control" placeholder="True" disabled>
+                
+            </div>
+            <div class="form-group" *ngFor="let masc of mascotas | async">
+                <label for="exampleFormControlSelect1">Seleccione el ID de la mascota.</label>
+                <select [(ngModel)]="Jaula.idmascota" required #qqq="ngModel" value="{{masc.mascota[0]._idmasc}}"  class="form-control" id="exampleFormControlSelect1">
+                    <option selected value="{{masc.mascota[0]._idmasc}}" >ID:{{masc.mascota[0]._idmasc}}&nbsp;&nbsp;&nbsp;
+                        Nombre:{{masc.mascota[0].nombre_masc}}</option>
+                </select>
+                <div *ngIf="qqq.touched && !qqq.valid">
+                    <div class="isrequired" *ngIf="qqq.errors.required">Es requerido</div>  
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="">Hora:</label>
+                <input [(ngModel)]="Jaula.hora_jau" required #hora="ngModel" type="time" name="" id="" class="form-control">
+            </div>
+            <div *ngIf="hora.touched && !hora.valid">
+                <div class="isrequired" *ngIf="hora.errors.required">Es requerido</div>  
+            </div>
+            <button [disabled]="ID.invalid||hora.invalid || hora.invalid || num.invalid " (click)="Guardar()" class="btn btn-danger"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-archive-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15h9.286zM6 7a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1H6zM.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8H.8z"/>
+              </svg><br>Guardar</button>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

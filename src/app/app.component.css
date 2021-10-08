@@ -1,0 +1,4 @@
+img {
+    /*esto permite que todas las imagenes sean responsivas */
+    max-width: 100%;
+}

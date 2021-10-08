@@ -1,0 +1,110 @@
+<div class="container">
+
+    <br>
+    <br>
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Agenda una cita</h3>
+            </div>
+            <div class="card-body table-responsive" *ngFor="let i of ids | async" >
+                
+                    <h5>Servicio requerido:  </h5>
+                    <div class="form-check form-check-inline">
+                        <input  class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"   (click)="banototal(activador)" [(ngModel)]="activador">
+                        <label class="form-check-label" for="inlineCheckbox1">Baño (100$)</label>
+                      </div>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" (click)="desparacitacion(activador2)" [(ngModel)]="activador2">
+                        <label class="form-check-label" for="inlineCheckbox2">Desparacitacion (150$)</label>
+                      </div>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" (click)="Castracion(activador3)" [(ngModel)]="activador3">
+                        <label class="form-check-label" for="inlineCheckbox3">Castracion (1,200$)</label>
+                      </div>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4" (click)="Cirugia(activador4)" [(ngModel)]="activador4">
+                        <label class="form-check-label" for="inlineCheckbox4">Cirugía (700$)</label>
+                      </div>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5" (click)="Traumatologia(activador5)" [(ngModel)]="activador5">
+                        <label class="form-check-label" for="inlineCheckbox5">Traumatología (800$)</label>
+                      </div>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6" (click)="Odontologia(activador6)" [(ngModel)]="activador6">
+                        <label class="form-check-label" for="inlineCheckbox6">Odontología (900$)</label>
+                      </div>
+                      <br>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7" (click)="Ecografias(activador7)" [(ngModel)]="activador7">
+                        <label class="form-check-label" for="inlineCheckbox7">Ecografías (500$)</label>
+                      </div>
+                      <h6>Total:{{totals}}$</h6>
+                    <div class="form-group">
+                        <label for="">Nombre Mascota:</label>
+                       <input [(ngModel)]="Cita.nombremasc" type="text" name="" id="" class="form-control" required>
+                    </div>
+                    <div class=" form-group ">
+                        <label for=" ">Raza:</label>
+                       <input type="text " [(ngModel)]="Cita.raza" name=" " id=" " class="form-control ">
+                    </div>
+                    <div class="form-group ">
+                        <label  for="">Tamaño:</label> <br>
+                        <select [(ngModel)]="Cita.tamano" name="" id="">
+                        <option value="Mini">Mini</option>
+                        <option value="Pequeño">Pequeño</option> 
+                        <option value="Mediano">Mediano</option>
+                        <option value="Grande">Grande</option>
+                        <option value="Gigante">Gigante</option>
+                    </select>
+                        
+                    </div>
+                    <div class="form-group ">
+                        <label for=" ">Peso:</label>
+                        <br>
+                      <select [(ngModel)]="Cita.peso" name="" id="">
+                        <option value="menos de 10 kilos">menos de 10 kilos</option>
+                        <option value="10 a 20 kilos">10 a 20 kilos</option>
+                        <option value="20 a 30 kilos">20 a 30 kilos</option>
+                        <option value="30 a 40 kilos">30 a 40 kilos</option>
+                        <option value="40 a 50 kilos">40 a 50 kilos</option>
+                        <option value="mas de 50 kilos">mas de 50 kilos</option>
+                     </select>
+                    </div>
+                    <div class="form-group ">
+                        <label for=" ">Fecha para agendar:</label>
+                       <input [(ngModel)]="Cita.fecha" type="date" name=" " id=" " class="form-control">
+                    </div>
+                    <div class="form-group ">
+                     <label for=" ">Hora:</label>
+                      <select [(ngModel)]="Cita.hora" class="form-control " id="exampleFormControlSelect1 ">
+                            <option value="10:00-11:00">10:00-11:00</option>
+                            <option value="11:00-12:00">11:00-12:00</option>
+                            <option value="12:00-13:00">12:00-13:00</option>
+                            <option value="13:00-14:00">13:00-14:00</option>
+                            <option value="14:00-15:00">14:00-15:00</option>
+                            <option value="15:00-16:00">15:00-16:00</option>
+                            <option value="16:00-17:00">16:00-17:00</option>
+                            <option value="17:00-18:00">17:00-18:00</option>
+                            <option value="18:00-19:00">18:00-19:00</option>
+                            <option value="19:00-20:00">19:00-20:00</option>
+                        </select> </div>
+                        <div  class="form-group ">
+                            <label for="">Descripción:</label>
+                            <textarea class="form-control" [(ngModel)]="Cita.descripcion" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                    <button (click)="Guardar(i._id+1)" class="btn btn-danger ">Guardar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

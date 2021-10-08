@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark" style="color:white;">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu_var" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <img src="./assets/images/menu.svg">
+    </button>
+    <a class="navbar-brand" [routerLink]="['header']"><img class="f" src='./assets/images/logoveterinaria.svg' width="70px" height="70px"></a>
+
+    <div class="collapse navbar-collapse" id="menu_var">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['header']"> Inicio </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['nosotros1']"> Nosotros </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['servicios']"> Servicios </a>
+            </li>
+
+            <li class="nav-item" *ngIf="tipo&&nivelusu=='2'||tipo&&nivelusu=='3'">
+                <a class="nav-link select" (click)="Listar()">Cliente</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link select" *ngIf="tipo&&nivelusu=='3'" (click)="ListarEmpleado()">Empleado</a>
+            </li><!--
+            <li class="nav-item">
+                <a class="nav-link select" *ngIf="tipo&&nivelusu=='3'" (click)="ListarJaula()">Jaula</a>
+            </li>-->
+            <li class="nav-item">
+                <a class="nav-link select" *ngIf="tipo&&nivelusu=='2'||tipo&&nivelusu=='3'" (click)="ListarMascota()">Mascota</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link select" *ngIf="tipo&&nivelusu=='3'" (click)="ListarUsuario()">Usuario</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"  [routerLink]="['agendalistar']" *ngIf="tipo&&nivelusu=='2'||tipo&&nivelusu=='3'"> Citas </a>
+            </li><!--
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['Homes']"> Atencion Cliente </a>
+            </li>-->
+            <li class="nav-item" *ngIf="entrar; else esfalsa">
+                <a class="nav-link select" (click)="cerrarsesion()"> Cerrar Sesión </a>
+            </li>
+            <ng-template #esfalsa>
+                <li class="nav-item">
+                    <a class="nav-link select" (click)="formularios()"> Iniciar Sesión </a>
+                </li>
+            </ng-template>
+            <li class="nav-item center" *ngIf="nombreusu">
+                <a class="nav-link select">{{nombreusu}}</a>
+            </li>
+            <li class="nav-item center" *ngIf="nombreusu">
+                <a class="nav-link select" ><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-person-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M14 1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path fill-rule="evenodd" d="M2 15v-1c0-1 1-4 6-4s6 3 6 4v1H2zm6-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                  </svg> </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+

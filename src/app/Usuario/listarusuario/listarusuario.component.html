@@ -1,0 +1,98 @@
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<div class="container">
+   
+    
+    
+
+        
+    <br>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Usuario</h3>
+            <button (click)="ListarUsuario()" class="btn btn-info"><svg width="1em" height="1em" viewBox="0 0 16 16"
+                class="bi bi-person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+            </svg></button>
+        <button (click)="NuevoUsuario()" class="btn btn-info" style="margin-left:10px"><svg _ngcontent-kie-c110=""
+                width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                class="bi bi-person-plus-fill">
+                <path _ngcontent-kie-c110="" fill-rule="evenodd"
+                    d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
+                </path>
+                <path _ngcontent-kie-c110="" fill-rule="evenodd"
+                    d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"></path>
+            </svg></button>
+        </div>
+        <div class="btn-group btn-group-toggle span9" data-toggle="buttons">
+            <label class="btn btn-light active" (click)="mostrarNo()">
+                <input type="radio" name="options" id="option1" autocomplete="off" checked><svg
+                width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                <path fill-rule="evenodd"
+                    d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+            </svg>
+            </label>
+        </div><br>
+        <div *ngIf="mostrarN">
+            <h5>Buscar por:</h5>
+            <input class="form-control" [(ngModel)]="filtroPost"  placeholder="Nombre / Apellido / correo / telefono"
+                type="text" name="filtrar" id="">
+            </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                     
+                        <th>Tipo</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Usu of usuarios | async  | usuario:filtroPost | paginate:{itemsPerPage: 10, currentPage: p}" class="text-center">
+                        <td>{{Usu.nombre}}</td>
+                        <td>{{Usu.email}}</td>
+                     
+                        <td>{{Usu.tipo}}</td>
+                        
+
+                        <td>
+                            <button (click)="EditarUsuario()" class="btn btn-warning"><svg _ngcontent-axf-c110=""
+                                    width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg" class="bi bi-pencil-square">
+                                    <path _ngcontent-axf-c110=""
+                                        d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z">
+                                    </path>
+                                    <path _ngcontent-axf-c110="" fill-rule="evenodd"
+                                        d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z">
+                                    </path>
+                                </svg></button>
+                            <button (click)="eliminarcliente(Usu._id)" class="btn btn-warning" style="margin-left:5px"><svg _ngcontent-rip-c110=""
+                                    width="1.1em" height="1.1em" viewBox="0 0 16 16" fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg" class="bi bi-trash-fill">
+                                    <path _ngcontent-rip-c110="" fill-rule="evenodd"
+                                        d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z">
+                                    </path>
+                                </svg></button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="custom-pagination">
+        <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)=" p = $event">
+        </pagination-controls>
+    </div>
+</div>
+
+<br>
+<br>
+<br>
+<app-footer></app-footer>

@@ -1,0 +1,93 @@
+
+<div class="container col-md-6">
+    <button (click)="Listar()" class="btn btn-info"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+        <path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+      </svg></button>
+    <br>
+    <br>
+    <div class="card">
+       
+        <div class="card-header">
+            <h3>Editar Cliente</h3>
+            
+
+        </div>
+        <div class="card-body table-responsive">
+            
+            <div *ngFor="let cli of Clientes | async; let r of Clienteedit | async">
+            <div class="form-group">
+                <label for="">ID:</label>
+                <input disabled #id="ngModel" required type="number" [(ngModel)]="Cliente._id " value="{{r._id}}"  placeholder="{{r._id}}" type="text" name="" id="" class="form-control">
+            </div>
+            <div *ngIf="id.touched && !id.valid">
+                <div class="isrequired" *ngIf="id.errors.required">id es requerido</div>
+                
+            </div>
+            <div class="form-group">
+                <label for="">Nombre:</label>
+                <input [(ngModel)]="Cliente.nombre" #nombre="ngModel"   minlength="5" maxlength="35" value="{{r.nombre}}"  placeholder={{r.nombre}} type="text" name="" id="" class="form-control" >
+                <div *ngIf="nombre.touched && !nombre.valid">
+                    <div class="isrequired" *ngIf="nombre.errors.required">Nombre es requerido</div>
+                    <div class="isrequired" *ngIf="nombre.errors.minlength">Deben ser al menos 5 caracteres</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Primer Apellido:</label>
+                <input [(ngModel)]="Cliente.apellido1" #apellido="ngModel" minlength="5" maxlength="30" type="text" placeholder="Apellido" name="" id="" class="form-control" value="" required>
+                <div *ngIf="apellido.touched && !apellido.valid">
+                    <div class="isrequired" *ngIf="apellido.errors.required">Apellido es requerido</div>
+                    <div class="isrequired" *ngIf="apellido.errors.minlength">Deben ser al menos 5 caracteres</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Segundo Apellido:</label>
+                <input [(ngModel)]="Cliente.apellido2"     type="text" name="" placeholder="Apellido" id="" class="form-control">
+                    
+            </div>
+           
+            <div class="form-group">
+                <label for="">Dirección:</label>
+                <input [(ngModel)]="Cliente.direccion" #direccion="ngModel" required minlength="10" maxlength="30" type="text" name="" placeholder="Dirección" id="" class="form-control">
+                <div *ngIf="direccion.touched && !direccion.valid">
+                    <div class="isrequired" *ngIf="direccion.errors.required">Dirección es requerida</div>
+                    <div class="isrequired" *ngIf="direccion.errors.minlength">Deben ser al menos 10 caracteres</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="">Teléfono:</label>
+                <input [(ngModel)]="Cliente.telefono" #tel="ngModel" required minlength="10" maxlength="10" type="tel" name="" id="" placeholder="Telefono" class="form-control">
+                <div *ngIf="tel.touched && !tel.valid">
+                    <div class="isrequired" *ngIf="tel.errors.required">Telefono es requerido</div>
+                    <div class="isrequired" *ngIf="tel.errors.minlength">Deben ser al menos 10 digitos</div>
+                </div>
+            </div>
+           
+            <div class="form-group">
+                <label for ="">Correo.</label>
+                  <input [(ngModel)]="Cliente.correo" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
+                  <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="aler alert-danger">
+                   <div [hidden]="!emailref.errors?.pattern">
+                     Correo no valido
+                   </div> 
+                  </div> 
+            </div>
+            <button (click)="Actualizar()" [disabled]="emailref.invalid || tel.errors.invalid || direccion.invalid || nombre.invalid" class="btn btn-danger"><svg _ngcontent-plj-c117="" width="1em" height="1em"
+                    viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                    class="bi bi-arrow-repeat">
+                    <path _ngcontent-plj-c117="" fill-rule="evenodd"
+                        d="M2.854 7.146a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L2.5 8.207l1.646 1.647a.5.5 0 0 0 .708-.708l-2-2zm13-1a.5.5 0 0 0-.708 0L13.5 7.793l-1.646-1.647a.5.5 0 0 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0 0-.708z">
+                    </path>
+                    <path _ngcontent-plj-c117="" fill-rule="evenodd"
+                        d="M8 3a4.995 4.995 0 0 0-4.192 2.273.5.5 0 0 1-.837-.546A6 6 0 0 1 14 8a.5.5 0 0 1-1.001 0 5 5 0 0 0-5-5zM2.5 7.5A.5.5 0 0 1 3 8a5 5 0 0 0 9.192 2.727.5.5 0 1 1 .837.546A6 6 0 0 1 2 8a.5.5 0 0 1 .501-.5z">
+                    </path>
+                </svg><br>Actualizar</button>
+
+        </div>
+    </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

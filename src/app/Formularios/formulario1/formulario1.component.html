@@ -1,0 +1,47 @@
+<header>
+
+    <section class="textos-header">
+        <h1>Mascotas Saludables</h1>
+        <h2>Salud y cuidado para tu masota.</h2>
+    </section>
+
+</header>
+
+    <div class="container section">
+        <div class="content-center">
+                <h3 class="titulo"><b> Inicia sesión ahora.</b></h3>
+        </div> 
+                    <div class="col-md-12">
+                        <div class="form-group">
+                              <input minlength="8" maxlength="45" [(ngModel)]="usuario.email" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel" placeholder="Correo">
+                              <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="aler alert-danger">
+                               <div [hidden]="!emailref.errors?.pattern">
+                                 Correo no valido
+                               </div> 
+                               <div class="isrequired" *ngIf="emailref.errors.required">
+                                Correo es requerido
+                              </div>
+                              <div class="isrequired" *ngIf="emailref.errors.minlength">Correo muy corto, debe ser mínimo 8 carácteres</div>
+                              </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <input type="password" #pass="ngModel" required minlength="8" maxlength="16" (keydown.enter)="login()"  [(ngModel)]="usuario.password" class="form-control" id="" placeholder="Contraseña">
+                            <div *ngIf="pass.touched && !pass.valid">
+                                <div class="isrequired" *ngIf="pass.errors.required">Contraseña es requerida</div>
+                                <div class="isrequired" *ngIf="pass.errors.minlength">La contraseña debe tener 8 digitos</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button class="btn full-width" [disabled]="emailref.invalid || pass.invalid"  (click)="login()">Entrar</button>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <button  class="btn full-width"  (click)="formulariodos()">¡Registrate ya!</button>
+                    </div>
+</div>
+
+
+<app-footer></app-footer>

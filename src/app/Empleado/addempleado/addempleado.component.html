@@ -1,0 +1,120 @@
+<div class="container">
+    <button (click)="ListarEmpleado()" class="btn btn-info"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z"/>
+      </svg></button>
+    <button (click)="NuevoEmpleado()" class="btn btn-info" style="margin-left:10px"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-plus-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+        <path fill-rule="evenodd" d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"/>
+      </svg></button>
+    <br>
+    <br>
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header ">
+                <h3>Agregar Empleado</h3>
+            </div>
+            <div class="card-body table-responsive">
+                <div class="form-group" *ngFor="let i of ids | async">
+                    <div class="form-group" >
+                        <label for="">ID:</label>
+                        <input class=""   value="{{i._id+1}}" type="text"  name="_idcli" id="" class="form-control" disabled>
+                        
+                 
+                </div>
+                <div class="form-group">
+                    <label for="">Nombre:</label>
+                    <input [(ngModel)]="Empleado.nombre" #nombre="ngModel" minlength="5" maxlength="35" placeholder="Nombre" type="text" name="nombre" id="nombre" class="form-control" required>
+                    <div *ngIf="nombre.touched && !nombre.valid">
+                        <div class="isrequired" *ngIf="nombre.errors.required">Nombre es requerido</div>
+                        <div class="isrequired" *ngIf="nombre.errors.minlength">Deben ser al menos 5 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Primer Apellido:</label>
+                    <input [(ngModel)]="Empleado.apellido1" #apellido="ngModel" minlength="5" maxlength="30" type="text" placeholder="Apellido" name="" id="" class="form-control" value="" required>
+                    <div *ngIf="apellido.touched && !apellido.valid">
+                        <div class="isrequired" *ngIf="apellido.errors.required">Apellido es requerido</div>
+                        <div class="isrequired" *ngIf="apellido.errors.minlength">Deben ser al menos 5 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Segundo Apellido:</label>
+                    <input [(ngModel)]="Empleado.apellido2"     type="text" name="" placeholder="Apellido" id="" class="form-control">
+                        
+                </div>
+                <div class="form-group">
+                    <label for="">Dirección:</label>
+                    <input [(ngModel)]="Empleado.direccion" #direccion="ngModel" required minlength="10" maxlength="30" type="text" name="" placeholder="Dirección" id="" class="form-control">
+                    <div *ngIf="direccion.touched && !direccion.valid">
+                        <div class="isrequired" *ngIf="direccion.errors.required">Dirección es requerida</div>
+                        <div class="isrequired" *ngIf="direccion.errors.minlength">Deben ser al menos 10 caracteres</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="">Teléfono:</label>
+                    <input [(ngModel)]="Empleado.telefono" #tel="ngModel" required minlength="10" maxlength="10" type="tel" name="" id="" placeholder="Telefono" class="form-control">
+                    <div *ngIf="tel.touched && !tel.valid">
+                        <div class="isrequired" *ngIf="tel.errors.required">Telefono es requerido</div>
+                        <div class="isrequired" *ngIf="tel.errors.minlength">Deben ser al menos 10 digitos</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for ="">Correo.</label>
+                      <input [(ngModel)]="Empleado.correo" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
+                      <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="aler alert-danger">
+                       <div [hidden]="!emailref.errors?.pattern">
+                         Correo no valido
+                       </div> 
+                      </div> 
+                </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Seleccione los dias</label>
+                        <select required #dias="ngModel" [(ngModel)]="Empleado.dias" class="form-control" id="exampleFormControlSelect1">
+                          <option value="Lunes a miercoles">Lunes a Miercoles</option>
+                          <option value="Jueves a sabado">Jueves a Sabado</option>
+                        
+                         
+
+                        </select>
+                        <div *ngIf="dias.touched && !dias.valid">
+                            <div class="isrequired" *ngIf="dias.errors.required">Dias es requerido</div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Seleccione un horario</label>
+                        <select required #horas="ngModel" [(ngModel)]="Empleado.horas" class="form-control" id="exampleFormControlSelect1">
+                          <option value="10am-3pm">10am - 3pm</option>
+                          <option value="4pm-7pm">4pm - 7pm</option>
+                          
+
+                        </select>
+                        <div *ngIf="horas.touched && !horas.valid">
+                            <div class="isrequired" *ngIf="horas.errors.required">horas es requerido</div>
+                            
+                        </div>
+                    </div>
+
+                    <!--
+                    <div class="form-group">
+                        <label for="">Horario:</label>
+                        <input type="text" name="" id="" class="form-control">
+                    </div>
+                    -->
+                    <button [disabled]="emailref.invalid || tel.invalid || direccion.invalid||apellido.invalid||horas.invalid||dias.invalid" (click)="addEmpleado(i._id+1)" class="btn btn-danger">Guardar<br><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-person-check-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9.854-2.854a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z"/>
+                      </svg></button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>
+
+
+<!---->

@@ -1,0 +1,69 @@
+<div class="container">
+    <button (click)="ListarUsuario()" class="btn btn-info"><svg width="1em" height="1em" viewBox="0 0 16 16"
+            class="bi bi-person-lines-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7 1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5zm2 9a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+        </svg></button>
+    <button (click)="NuevoUsuario()" class="btn btn-info" style="margin-left:10px"><svg _ngcontent-kie-c110=""
+            width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+            class="bi bi-person-plus-fill">
+            <path _ngcontent-kie-c110="" fill-rule="evenodd"
+                d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm7.5-3a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z">
+            </path>
+            <path _ngcontent-kie-c110="" fill-rule="evenodd"
+                d="M13 7.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0v-2z"></path>
+        </svg></button>
+    <br>
+    <br>
+    <div class="container col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h3>Agregar Usuario</h3>
+            </div>
+            <div class="card-body" *ngFor="let i of ids | async">
+                
+                    <div class="form-group">
+                        <label for="">id</label>
+                        <input value="{{i._id+1}}" type="text"  class="form-control" disabled>
+                    </div>
+                    <div class="form-group">
+                        <label for="">codigo</label>
+                        <input [(ngModel)]="Usuario.codigo" type="text" name="" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tipo:</label>
+                        &nbsp;<select [(ngModel)]="Usuario.tipo" name="" value="holi" id="">
+                            <option value="1">Cliente</option>
+                            <option value="2">Empelado</option>
+                            <option value="3">Administrador</option>
+                        </select>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="">nombre</label>
+                        <input [(ngModel)]="Usuario.nombre" type="text" name="" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">email</label>
+                        <input [(ngModel)]="Usuario.email" type="text" name="" id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="">password</label>
+                        <input [(ngModel)]="Usuario.password" type="password" name="" id="" class="form-control">
+                    </div>
+                    <button (click)="addUsuario()" class="btn btn-danger"><svg _ngcontent-ber-c111="" width="1em"
+                            height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                            class="bi bi-person-check-fill">
+                            <path _ngcontent-ber-c111="" fill-rule="evenodd"
+                                d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9.854-2.854a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L12.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0z">
+                            </path>
+                        </svg><br>Guardar</button>
+               
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<br>
+<app-footer></app-footer>

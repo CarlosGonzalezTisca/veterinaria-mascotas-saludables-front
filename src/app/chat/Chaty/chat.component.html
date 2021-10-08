@@ -1,0 +1,19 @@
+<p>chatta works!</p>
+
+<div >
+    <div>
+        <label for="">Hola<span>{{userChat.user}}</span>...Escribe algo</label>
+        <input type="text" (change)="myMessage()">
+    </div>
+        <div class="mt-3">
+    
+        <div *ngFor="let a of myMessages">
+            <label for="">{{a.text}}</label>
+            <span>{{a.text}}</span>
+    
+        </div>
+    
+    
+        </div>
+    
+    </div>

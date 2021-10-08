@@ -1,0 +1,61 @@
+<header>
+
+    <section class="textos-header">
+        <h1>Mascotas Saludables</h1>
+        <h2>Salud y cuidado para tu masota.</h2>
+    </section>
+
+</header>
+<div>
+<div class="container section" *ngFor="let i of ids | async">
+    <div class="content-center">
+        <h3 class="titulo"><b>Registrate</b></h3>
+    </div>
+
+
+    <div class="col-md-12">
+    <div class="form-group">
+    <input [(ngModel)]="Usuario.nombre" #nombre="ngModel" minlength="4" maxlength="35" placeholder="Nombre"
+            type="text" name="nombre" id="nombre" class="form-control" required>
+        <div *ngIf="nombre.touched && !nombre.valid">
+            <div class="isrequired" *ngIf="nombre.errors.required">Nombre es requerido</div>
+            <div class="isrequired" *ngIf="nombre.errors.minlength">Deben ser al menos 4 caracteres</div>
+        </div>
+    </div>
+</div>
+    <div class="col-md-12">
+        <div class="form-group">
+
+           <input minlength="8" maxlength="45" [(ngModel)]="Usuario.email" type="text" class="form-control"
+                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email" name="email" ngModel #emailref="ngModel"
+                placeholder="Correo">
+            <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class="aler alert-danger">
+                <div [hidden]="!emailref.errors?.pattern">
+                    Correo no valido
+                </div>
+                <div class="isrequired" *ngIf="emailref.errors.required">
+                    Correo es requerido
+                </div>
+                <div class="isrequired" *ngIf="emailref.errors.minlength">Correo muy corto, debe ser mínimo 8 carácteres
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="form-group">
+           <input type="password" #pass="ngModel" required minlength="8" maxlength="16" [(ngModel)]="Usuario.password"
+                class="form-control" id="" placeholder="Contraseña">
+            <div *ngIf="pass.touched && !pass.valid">
+                <div class="isrequired" *ngIf="pass.errors.required">Contraseña es requerida</div>
+                <div class="isrequired" *ngIf="pass.errors.minlength">La contraseña debe tener 8 digitos</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <button href="" [disabled]="emailref.invalid || pass.invalid || nombre.invalid" class="btn full-width"
+     (click)="addUsuario(i._id+1)">Registrarme</button>
+    </div>
+</div>
+</div>
+
+<app-footer></app-footer>

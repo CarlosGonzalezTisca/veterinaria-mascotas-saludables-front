@@ -1,0 +1,21 @@
+@font-face {
+    font-family: "Animaletters";
+    src: url("/src/assets/images/Animaletters.ttf");
+  }
+  font{
+    font-family: 'Animaletters', 'arial', sans-serif;
+  }
+  /*.f{
+    width: 160px;
+    height: 160px;
+    position: auto;
+
+  }*/
+
+  .select{
+    cursor:pointer;
+  }
+  .accountcss{
+    
+    margin-left:10%;
+    }
